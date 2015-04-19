@@ -1,0 +1,51 @@
+<section id="todoapp">
+  <header id="header">
+    <h1>todos</h1>
+    <input id="new-todo" autofocus placeholder="What needs to be done?" v-model="title" v-on="keyup:create | key enter">
+  </header>
+  <section id="main" v-show="all.length" v-cloak>
+    <input id="toggle-all" type="checkbox" v-model="allDone">
+    <ul id="todo-list">
+      <li class="todo" v-repeat="filtered" v-class="completed: completed, editing: oldTitle">
+        <div class="view">
+          <input class="toggle" type="checkbox" v-model="completed">
+          <label v-text="title" v-on="dblclick: edit(this)"></label>
+          <button class="destroy" v-on="click: remove(this)"></button>
+        </div>
+        <input class="edit" type="text" v-model="title" v-select="oldTitle" v-on="blur: save(this), keyup: save(this) | key enter, keyup: cancel(this) | key esc">
+      </li>
+    </ul>
+  </section>
+  <footer id="footer" v-show="all.length" v-cloak>
+    <span id="todo-count">
+      <strong v-text="active.length"></strong> {{active.length | pluralize item}} left
+    </span>
+    <ul id="filters">
+      <li><a href="#/all" v-class="selected: activeFilter == 'all'">All</a></li>
+      <li><a href="#/active" v-class="selected: activeFilter == 'active'">Active</a></li>
+      <li><a href="#/completed" v-class="selected: activeFilter == 'completed'">Completed</a></li>
+    </ul>
+    <button id="clear-completed" v-on="click:removeCompleted" v-show="all.length > active.length">Clear completed</button>
+  </footer>
+</section>
+
+<footer id="info">
+  <p>Created by <a href="https://github.com/farzher">Stephen Kamenar</a></p>
+  <p>Part of <a href="http://todomvc.com">TodoMVC</a> <a href="https://github.com/farzher/vue-livescript-todomvc" style="color: #ca9797">Source Code</a></p>
+</footer>
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/tastejs/todomvc/gh-pages/examples/vue/node_modules/todomvc-app-css/index.css">
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/tastejs/todomvc/gh-pages/examples/vue/node_modules/todomvc-common/base.css">
+<style>[v-cloak] {display: none}</style>
+
+<!-- _ -->
+<script src="https://rawgit.com/farzher/prelude-ls-extended/master/browser.min.js"></script>
+<script>_ = preludeLsExtended</script>
+
+<!-- a -->
+<script>function a(){"use strict";var e=arguments.length|0;var t=Array(e);for(var n=0|0;n<e;n++){t[n]=arguments[n]}return t}</script>
+
+<script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+<script src="vue.js"></script>
+<script src="app.js"></script>
