@@ -6,10 +6,10 @@
   <section id="main" v-show="all.length" v-cloak>
     <input id="toggle-all" type="checkbox" v-model="allDone">
     <ul id="todo-list">
-      <li class="todo" v-repeat="filtered" v-class="completed: completed, editing: oldTitle">
+      <li class="todo" v-repeat="this[activeFilter]" v-class="completed: completed, editing: oldTitle">
         <div class="view">
           <input class="toggle" type="checkbox" v-model="completed">
-          <label v-text="title" v-on="dblclick: edit(this)"></label>
+          <label v-text="title" v-on="dblclick: oldTitle = title"></label>
           <button class="destroy" v-on="click: remove(this)"></button>
         </div>
         <input class="edit" type="text" v-model="title" v-select="oldTitle" v-on="blur: save(this), keyup: save(this) | key enter, keyup: cancel(this) | key esc">
@@ -43,9 +43,7 @@
 <script src="https://rawgit.com/farzher/prelude-ls-extended/master/browser.min.js"></script>
 <script>_ = preludeLsExtended</script>
 
-<!-- a -->
-<script>function a(){"use strict";var e=arguments.length|0;var t=Array(e);for(var n=0|0;n<e;n++){t[n]=arguments[n]}return t}</script>
-
 <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
 <script src="vue.js"></script>
+<script src="vue-extended.js"></script>
 <script src="app.js"></script>

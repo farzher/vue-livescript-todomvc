@@ -12,13 +12,6 @@ app = new Vue({
       return localStorage.v = JSON.stringify(it);
     }, true);
   },
-  directives: {
-    select: function(it){
-      if (it) {
-        return this.el.select();
-      }
-    }
-  },
   computed: {
     active: function(){
       return _.reject(function(it){
@@ -29,9 +22,6 @@ app = new Vue({
       return _.filter(function(it){
         return it.completed;
       }, this.all);
-    },
-    filtered: function(){
-      return this[this.activeFilter];
     },
     allDone: {
       get: function(){
@@ -58,9 +48,6 @@ app = new Vue({
     },
     remove: function(it){
       this.all.$remove(it.$data);
-    },
-    edit: function(it){
-      it.oldTitle = it.title;
     },
     cancel: function(it){
       it.title = it.oldTitle;
