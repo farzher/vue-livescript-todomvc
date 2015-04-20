@@ -8,7 +8,7 @@ app = new Vue({
     all: JSON.parse(localStorage.getItem('v')) || []
   },
   ready: function(){
-    this.$watch('all', function(it){
+    return this.$watch('all', function(it){
       return localStorage.v = JSON.stringify(it);
     }, true);
   },
@@ -43,24 +43,24 @@ app = new Vue({
           completed: false,
           oldTitle: false
         });
-        this.title = '';
+        return this.title = '';
       }
     },
     remove: function(it){
-      this.all.$remove(it.$data);
+      return this.all.$remove(it.$data);
     },
     cancel: function(it){
       it.title = it.oldTitle;
-      it.oldTitle = '';
+      return it.oldTitle = '';
     },
     save: function(it){
       it.oldTitle = '';
       if (!it.title.trim()) {
-        this.remove(it);
+        return this.remove(it);
       }
     },
     removeCompleted: function(){
-      this.all = _.reject(function(it){
+      return this.all = _.reject(function(it){
         return it.completed;
       }, this.all);
     }
