@@ -4,4 +4,4 @@
 http://farzher.github.io/vue-livescript-todomvc/
 
 ### Source with syntax highlighting
-![](http://i.imgur.com/3KL2JPL.png)
+![](http://i.imgur.com/T14EK8o.png)

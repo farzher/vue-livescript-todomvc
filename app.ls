@@ -17,4 +17,4 @@ app = new Vue do
     save: -> it.oldTitle = ''; if !it.title.trim! => @remove it
     removeCompleted: -> @all = _.reject (.completed), @all
 
-r = Router {'*': -> app.activeFilter = it} .init '/all'
+Router {'*': -> app.activeFilter = it} .init '/all'
