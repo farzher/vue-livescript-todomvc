@@ -3,13 +3,9 @@ var app;
 app = new Vue({
   el: '#todoapp',
   data: {
-    title: '',
+    name: '',
     activeFilter: 'all',
-    all: JSON.parse(localStorage.getItem('v')) || [{
-      title: 'Golfing',
-      completed: true,
-      oldTitle: false
-    }]
+    all: JSON.parse(localStorage.getItem('v')) || []
   },
   ready: function(){
     return this.$watch('all', function(it){
@@ -46,22 +42,22 @@ app = new Vue({
   methods: {
     create: function(){
       var that;
-      if (that = this.title.trim()) {
+      if (that = this.name.trim()) {
         this.all.push({
-          title: that,
+          name: that,
           completed: false,
-          oldTitle: false
+          oldName: false
         });
-        return this.title = '';
+        return this.name = '';
       }
     },
     cancel: function(it){
-      it.title = it.oldTitle;
-      return it.oldTitle = '';
+      it.name = it.oldName;
+      return it.oldName = '';
     },
     save: function(it){
-      it.oldTitle = '';
-      if (!it.title.trim()) {
+      it.oldName = '';
+      if (!it.name.trim()) {
         return this.all.$remove(it);
       }
     },
