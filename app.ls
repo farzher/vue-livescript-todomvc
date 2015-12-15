@@ -14,6 +14,6 @@ app = new Vue do
     create:-> if @title.trim! => @all.push {title:that, -completed, -oldTitle}; @title = ''
     cancel:-> it.title = it.oldTitle; it.oldTitle = ''
     save:-> it.oldTitle = ''; if !it.title.trim! => @all.$remove it
-    removeCompleted:-> @all |>=  _.reject (.completed)
+    removeCompleted:-> @all |>= _.reject (.completed)
 
 Router {'*':-> app.activeFilter = it} .init '/all'
