@@ -5,12 +5,18 @@ app = new Vue({
   data: {
     title: '',
     activeFilter: 'all',
-    all: JSON.parse(localStorage.getItem('v')) || []
+    all: JSON.parse(localStorage.getItem('v')) || [{
+      title: 'Golfing',
+      completed: true,
+      oldTitle: false
+    }]
   },
   ready: function(){
     return this.$watch('all', function(it){
       return localStorage.v = JSON.stringify(it);
-    }, true);
+    }, {
+      deep: true
+    });
   },
   computed: {
     active: function(){

@@ -2,8 +2,8 @@ app = new Vue do
   el:'#todoapp'
   data:
     title:'', activeFilter:'all'
-    all:JSON.parse localStorage.getItem \v or []
-  ready:-> @$watch 'all' (-> localStorage.v = JSON.stringify it), true
+    all:JSON.parse localStorage.getItem \v or [{title:'Golfing', +completed, -oldTitle}]
+  ready:-> @$watch 'all' (-> localStorage.v = JSON.stringify it), {+deep}
   computed:
     active:-> @all |> _.reject (.completed)
     completed:-> @all |> _.filter (.completed)
