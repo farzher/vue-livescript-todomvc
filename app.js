@@ -16,12 +16,14 @@ app = new Vue({
     active: function(){
       return _.reject(function(it){
         return it.completed;
-      }, this.all);
+      })(
+      this.all);
     },
     completed: function(){
       return _.filter(function(it){
         return it.completed;
-      }, this.all);
+      })(
+      this.all);
     },
     allDone: {
       get: function(){
@@ -30,7 +32,8 @@ app = new Vue({
       set: function(v){
         return _.each(function(it){
           return it.completed = v;
-        }, this.all);
+        })(
+        this.all);
       }
     }
   },
@@ -46,9 +49,6 @@ app = new Vue({
         return this.title = '';
       }
     },
-    remove: function(it){
-      return this.all.$remove(it.$data);
-    },
     cancel: function(it){
       it.title = it.oldTitle;
       return it.oldTitle = '';
@@ -56,13 +56,13 @@ app = new Vue({
     save: function(it){
       it.oldTitle = '';
       if (!it.title.trim()) {
-        return this.remove(it);
+        return this.all.$remove(it);
       }
     },
     removeCompleted: function(){
       return this.all = _.reject(function(it){
         return it.completed;
-      }, this.all);
+      })(this.all);
     }
   }
 });
