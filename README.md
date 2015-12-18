@@ -10,6 +10,6 @@ http://farzher.github.io/vue-livescript-todomvc/
 
 
 ### Source with syntax highlighting
-![](http://i.imgur.com/XuXHiN5.png)
+![](http://i.imgur.com/VYi5bWR.png)
 ![](http://i.imgur.com/PoAKtvB.png)
 

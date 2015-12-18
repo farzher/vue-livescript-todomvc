@@ -9,7 +9,7 @@ app = new Vue do
       get:-> @active.length is 0
       set:(v)-> @all |> _.each (.completed = v)
   methods:
-    create:-> if @name.trim! => @all.push {name:that, -completed, -oldName}; @name = ''
+    create:-> if @name => @all.push {@name, -completed, -oldName}; @name = ''
     cancel:-> it.name = it.oldName; it.oldName = ''
     save:-> it.oldName = ''; if !it.name.trim! => @all.$remove it
     removeCompleted:-> @all |>= _.reject (.completed)

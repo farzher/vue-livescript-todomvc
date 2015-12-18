@@ -41,10 +41,9 @@ app = new Vue({
   },
   methods: {
     create: function(){
-      var that;
-      if (that = this.name.trim()) {
+      if (this.name) {
         this.all.push({
-          name: that,
+          name: this.name,
           completed: false,
           oldName: false
         });
