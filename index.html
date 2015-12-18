@@ -3,7 +3,6 @@
     <h1>todos</h1>
     <input id="new-todo" autofocus placeholder="What needs to be done?" v-model="name" @keyup.enter="create">
   </header>
-
   <section id="main" v-show="all.length">
     <input id="toggle-all" type="checkbox" v-model="allDone">
     <ul id="todo-list">
@@ -17,11 +16,8 @@
       </li>
     </ul>
   </section>
-
   <footer id="footer" v-show="all.length">
-    <span id="todo-count">
-      <strong v-text="active.length"></strong> {{active.length | pluralize 'item'}} left
-    </span>
+    <span id="todo-count"><strong>{{active.length}}</strong> {{active.length | pluralize 'item'}} left</span>
     <ul id="filters">
       <li><a href="#/all" :class="{selected:activeFilter=='all'}">All</a></li>
       <li><a href="#/active" :class="{selected:activeFilter=='active'}">Active</a></li>

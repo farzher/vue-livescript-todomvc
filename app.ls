@@ -3,8 +3,8 @@ app = new Vue do
   data:{name:'', activeFilter:'all', all:JSON.parse localStorage.getItem \v or []}
   ready:-> @$watch 'all' (-> localStorage.v = JSON.stringify it), {+deep}
   computed:
-    active:-> @all |> _.reject (.completed)
     completed:-> @all |> _.filter (.completed)
+    active:-> @all |> _.reject (.completed)
     allDone:
       get:-> @active.length is 0
       set:(v)-> @all |> _.each (.completed = v)

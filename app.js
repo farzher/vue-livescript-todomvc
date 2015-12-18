@@ -15,14 +15,14 @@ app = new Vue({
     });
   },
   computed: {
-    active: function(){
-      return _.reject(function(it){
+    completed: function(){
+      return _.filter(function(it){
         return it.completed;
       })(
       this.all);
     },
-    completed: function(){
-      return _.filter(function(it){
+    active: function(){
+      return _.reject(function(it){
         return it.completed;
       })(
       this.all);
