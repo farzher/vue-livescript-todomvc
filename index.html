@@ -1,34 +1,4 @@
-<section id="todoapp">
-  <header id="header">
-    <h1>todos</h1>
-    <input id="new-todo" autofocus placeholder="What needs to be done?" v-model="name" @keyup.enter="create">
-  </header>
-  <section id="main" v-show="all.length">
-    <input id="toggle-all" type="checkbox" v-model="allDone">
-    <ul id="todo-list">
-      <li v-for="it in this[activeFilter]" :class="{todo:true, completed:it.completed, editing:it.oldName}">
-        <div class="view">
-          <input class="toggle" type="checkbox" v-model="it.completed">
-          <label @dblclick="it.oldName = it.name">{{it.name}}</label>
-          <button class="destroy" @click="all.$remove(it)"></button>
-        </div>
-        <input class="edit" v-model="it.name" v-select="it.oldName" @blur="save(it)" @keyup.enter="save(it)" @keyup.esc="cancel(it)">
-      </li>
-    </ul>
-  </section>
-  <footer id="footer" v-show="all.length">
-    <span id="todo-count"><strong>{{active.length}}</strong> {{active.length | pluralize 'item'}} left</span>
-    <ul id="filters">
-      <li><a href="#/all" :class="{selected:activeFilter=='all'}">All</a></li>
-      <li><a href="#/active" :class="{selected:activeFilter=='active'}">Active</a></li>
-      <li><a href="#/completed" :class="{selected:activeFilter=='completed'}">Completed</a></li>
-    </ul>
-    <button id="clear-completed" @click="removeCompleted" v-show="all.length>active.length">Clear completed</button>
-  </footer>
-</section>
-
-
-<footer id="info">
+<div id="todoapp"><div id="header"><h1>todos</h1><input id="new-todo" autofocus placeholder="What needs to be done?" v-model="name" @keyup.enter="create"></div><div id="main" v-show="all.length"><input id="toggle-all" type="checkbox" v-model="allDone"><ul id="todo-list"><li v-for="it in this[activeFilter]" :class="{todo:true, completed:it.completed, editing:it.oldName}"><div class="view"><input type="checkbox" v-model="it.completed" class="toggle"><label @dblclick="it.oldName = it.name">{{it.name}}</label><button @click="all.$remove(it)" class="destroy"></button></div><input v-model="it.name" v-select="it.oldName" @blur="save(it)" @keyup.enter="save(it)" @keyup.esc="cancel(it)" class="edit"></li></ul></div><div id="footer" v-show="all.length"><span id="todo-count"><strong>{{active.length}}</strong> {{active.length | pluralize 'item'}} left</span><ul id="filters"><li><a href="#/all" :class="{selected:activeFilter=='all'}">All</a></li><li><a href="#/active" :class="{selected:activeFilter=='active'}">Active</a></li><li><a href="#/completed" :class="{selected:activeFilter=='completed'}">Completed</a></li></ul><button id="clear-completed" @click="removeCompleted" v-show="all.length&gt;active.length">Clear completed</button></div></div><footer id="info">
   <p>Created by <a href="https://github.com/farzher">Stephen Kamenar</a></p>
   <p>Part of <a href="http://todomvc.com">TodoMVC</a> <a href="https://github.com/farzher/vue-livescript-todomvc" style="color: #ca9797">Source Code</a></p>
 </footer>

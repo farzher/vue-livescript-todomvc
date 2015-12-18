@@ -1,0 +1,33 @@
+#todoapp
+  #header
+    h1 todos
+    input#new-todo(autofocus placeholder="What needs to be done?" v-model="name" @keyup.enter="create")
+  #main(v-show="all.length")
+    input#toggle-all(type="checkbox" v-model="allDone")
+    ul#todo-list
+      li(v-for="it in this[activeFilter]" ,:class="{todo:true, completed:it.completed, editing:it.oldName}")
+        .view
+          input.toggle(type="checkbox" v-model="it.completed")
+          label(@dblclick="it.oldName = it.name") {{it.name}}
+          button.destroy(@click="all.$remove(it)")
+        input.edit(v-model="it.name" v-select="it.oldName" @blur="save(it)" @keyup.enter="save(it)" @keyup.esc="cancel(it)")
+  #footer(v-show="all.length")
+    span#todo-count: #[strong {{active.length}}] {{active.length | pluralize 'item'}} left
+    ul#filters
+      li: a(href="#/all" ,:class="{selected:activeFilter=='all'}") All
+      li: a(href="#/active" ,:class="{selected:activeFilter=='active'}") Active
+      li: a(href="#/completed" ,:class="{selected:activeFilter=='completed'}") Completed
+    button#clear-completed(@click="removeCompleted" v-show="all.length>active.length") Clear completed
+
+
+| <footer id="info">
+|   <p>Created by <a href="https://github.com/farzher">Stephen Kamenar</a></p>
+|   <p>Part of <a href="http://todomvc.com">TodoMVC</a> <a href="https://github.com/farzher/vue-livescript-todomvc" style="color: #ca9797">Source Code</a></p>
+| </footer>
+| <link rel="stylesheet" href="https://rawgit.com/tastejs/todomvc/gh-pages/examples/mithril/node_modules/todomvc-app-css/index.css">
+| <link rel="stylesheet" href="https://rawgit.com/tastejs/todomvc/gh-pages/examples/mithril/node_modules/todomvc-common/base.css">
+| <script src="https://rawgit.com/farzher/prelude-ls-extended/master/browser.min.js"></script>
+| <script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>
+| <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.11/vue.js"></script>
+| <script src="vue-extended.js"></script>
+| <script src="app.js"></script>
